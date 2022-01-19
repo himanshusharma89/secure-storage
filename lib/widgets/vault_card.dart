@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:secure_storage/services/storage_service.dart';
-import 'package:secure_storage/widgets/edit_data_dialog.dart';
 
 class VaultCard extends StatefulWidget {
   StorageItem item;
@@ -13,7 +12,7 @@ class VaultCard extends StatefulWidget {
 
 class _VaultCardState extends State<VaultCard> {
   bool _visibility = false;
-  final StorageService _storageService = StorageService();
+  //TODO: Initialize the StorageService instance
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +51,7 @@ class _VaultCardState extends State<VaultCard> {
             trailing: IconButton(
               icon: const Icon(Icons.edit),
               onPressed: () async {
-                final String updatedValue = await showDialog(
-                    context: context,
-                    builder: (_) => EditDataDialog(item: widget.item));
-                if (updatedValue.isNotEmpty) {
-                  _storageService
-                      .writeSecureData(
-                          StorageItem(widget.item.key, updatedValue))
-                      .then((value) {
-                    widget.item = StorageItem(widget.item.key, updatedValue);
-                    setState(() {});
-                  });
-                }
+                //TODO: Get the updated value and write it into the secure storage using the StorageItem object's key
               },
             ),
           )),

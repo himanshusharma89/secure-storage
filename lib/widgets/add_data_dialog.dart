@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:secure_storage/services/storage_service.dart';
 import 'package:secure_storage/widgets/textfield_decoration.dart';
 
 class AddDataDialog extends StatelessWidget {
@@ -10,7 +9,6 @@ class AddDataDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ref.watch(storageServiceProvider.notifier);
     return Dialog(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -29,9 +27,7 @@ class AddDataDialog extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      final StorageItem storageItem = StorageItem(
-                          _keyController.text, _valueController.text);
-                      Navigator.of(context).pop(storageItem);
+                      //TODO: Return an object of storageItem back to the home screen to add new data;
                     },
                     child: const Text('Secure')))
           ],

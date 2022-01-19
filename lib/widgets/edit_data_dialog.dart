@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:secure_storage/services/storage_service.dart';
 import 'package:secure_storage/widgets/textfield_decoration.dart';
 
 class EditDataDialog extends StatefulWidget {
-  final StorageItem item;
+  //TODO: Expect a StorageItem here
 
-  const EditDataDialog({Key? key, required this.item}) : super(key: key);
+  const EditDataDialog({Key? key}) : super(key: key);
 
   @override
   State<EditDataDialog> createState() => _EditDataDialogState();
@@ -17,12 +16,11 @@ class _EditDataDialogState extends State<EditDataDialog> {
   @override
   void initState() {
     super.initState();
-    _valueController = TextEditingController(text: widget.item.value);
+    //TODO: Add the default text to the _valueController using the StorageItem
   }
 
   @override
   Widget build(BuildContext context) {
-    // ref.watch(storageServiceProvider.notifier);
     return Dialog(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,7 +35,7 @@ class _EditDataDialogState extends State<EditDataDialog> {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(_valueController.text);
+                      //TODo: Return the updated value back to the vault VaultCard widget
                     },
                     child: const Text('Update')))
           ],

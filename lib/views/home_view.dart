@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:secure_storage/services/storage_service.dart';
-import 'package:secure_storage/widgets/add_data_dialog.dart';
-import 'package:secure_storage/widgets/search_key_value_dialog.dart';
 import 'package:secure_storage/widgets/vault_card.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final StorageService _storageService = StorageService();
+  //TODO: Initialize the StorageService instance
   late List<StorageItem> _items;
   bool _loading = true;
 
@@ -25,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void initList() async {
-    _items = await _storageService.readAllSecureData();
+    _items = []; //TODO: Use the readAll method here to update the list
     _loading = false;
     setState(() {});
   }
@@ -38,8 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.black),
-            onPressed: () => showDialog(
-                context: context, builder: (_) => const SearchKeyValueDialog()),
+            onPressed: () {
+              //TODO: Use the SearchKeyValueDialog widget to read data according to the key
+            },
           )
         ],
       ),
@@ -52,16 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: _items.length,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     itemBuilder: (_, index) {
-                      return Dismissible(
-                        key: Key(_items[index].toString()),
-                        child: VaultCard(item: _items[index]),
-                        onDismissed: (direction) async {
-                          await _storageService
-                              .deleteSecureData(_items[index])
-                              .then((value) => _items.removeAt(index));
-                          initList();
-                        },
-                      );
+                      //TODO: Use Dismissible Widget to delete a particular key-pair using the deleteSecureData method
+                      return VaultCard(item: _items[index]);
                     }),
       ),
       floatingActionButton: SizedBox(
@@ -73,16 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () async {
-                    final StorageItem? newItem = await showDialog<StorageItem>(
-                        context: context, builder: (_) => AddDataDialog());
-                    if (newItem != null) {
-                      _storageService.writeSecureData(newItem).then((value) {
-                        setState(() {
-                          _loading = true;
-                        });
-                        initList();
-                      });
-                    }
+                    //TODO: Utilize the AddDataDialog widget to get the new item and use the writeSecureData method to write new data in secure storage
                   },
                   child: const Text("Add Data"),
                 ),
@@ -92,9 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.red),
                   onPressed: () async {
-                    _storageService
-                        .deleteAllSecureData()
-                        .then((value) => initList());
+                    //TODO: To delete all the data from the secure storage use the deleteAllSecureData method
                   },
                   child: const Text("Delete All Data"),
                 ),
