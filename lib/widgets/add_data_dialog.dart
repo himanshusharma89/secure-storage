@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:secure_storage/services/storage_service.dart';
+import 'package:secure_storage/models/storage_item.dart';
 import 'package:secure_storage/widgets/textfield_decoration.dart';
 
 class AddDataDialog extends StatelessWidget {

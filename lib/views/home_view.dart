@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secure_storage/models/storage_item.dart';
 import 'package:secure_storage/services/storage_service.dart';
 import 'package:secure_storage/widgets/add_data_dialog.dart';
 import 'package:secure_storage/widgets/search_key_value_dialog.dart';
