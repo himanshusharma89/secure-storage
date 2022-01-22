@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:secure_storage/models/storage_item.dart';
 
 class StorageService {
   final _secureStorage = const FlutterSecureStorage();
@@ -45,11 +46,4 @@ class StorageService {
         key: key, aOptions: _getAndroidOptions());
     return containsKey;
   }
-}
-
-class StorageItem {
-  StorageItem(this.key, this.value);
-
-  final String key;
-  final String value;
 }
